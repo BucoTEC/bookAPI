@@ -29,7 +29,7 @@ func createBook(c *gin.Context){
 	var newBook Book
 
 	if err := c.BindJSON(&newBook); err!= nil {
-		return
+		c.IndentedJSON(http.StatusInternalServerError, err)
 	}
 
 	books = append(books, newBook)
