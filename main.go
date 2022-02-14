@@ -55,7 +55,7 @@ func getBookById(id string) (*Book, error ){
 		}
 
 	}
-	return nil, errors.New("book not foun")
+	return nil, errors.New("book not found")
 }
 func checkoutBook(c *gin.Context) {
 	id, ok := c.GetQuery("id")
