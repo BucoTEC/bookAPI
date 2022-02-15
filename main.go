@@ -2,9 +2,12 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 type Book struct {
 	ID       string    `json:"id"`
@@ -113,4 +116,14 @@ func main() {
 	router.PUT("/checkin", returnBook)
 
 	router.Run("localhost:5000")
+	dsn := "host=localhost user=postgres password=04012000 dbname=Books_API port=5432 sslmode=disable TimeZone=Europe"
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	
+	
+	fmt.Printf("Connectio do database is open : %v", db)
 }
